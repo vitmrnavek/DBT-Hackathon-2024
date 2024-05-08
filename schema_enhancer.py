@@ -5,6 +5,9 @@ import json
 def find_element_by_name(value, ls):
     return [(i,idx) for idx,i in enumerate(ls) if i['name'] == value][0]
 
+class NoAliasDumper(yaml.Dumper):
+    def ignore_aliases(self, data):
+        return True
 def find_element(element, json):
     keys = element.split('.')
     source=find_element_by_name(keys[0], json["sources"])
@@ -37,7 +40,7 @@ class Schema:
                     column_template[0]["name"]=col_name
                     source_schema["sources"][column_idx_location[0]]["tables"][column_idx_location[1]]["columns"][column_idx_location[2]]=column_template[0]
         with open(file, 'w') as f:
-            yaml.dump(source_schema, f, default_flow_style=False)
+            yaml.dump(source_schema, f,Dumper=NoAliasDumper)
 
 
 
