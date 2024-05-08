@@ -99,7 +99,7 @@ schema_template:
         
       #Table 3. Sales Data
       columns:
-        - name: TransactionID # Test 1
+        - name: Transactionid # Test 1
           tests:
             - unique
             - not_null
@@ -221,8 +221,38 @@ schema_template:
 
 mapping:
   products:
-    id: 
-    - data_sample.generated_product_information.productid
-    - data_sample.generated_sales_data.productid
-    name: 
-    - data_sample.generated_product_information.productname
+    #TABLE 1
+    ProductID:
+      - data_sample.generated_product_information.productid
+    ProductName:
+      - data_sample.generated_product_information.productname
+    category:
+      - data_sample.generated_product_information.category
+    price: 
+      - data_sample.generated_product_information.price
+    SKU:
+      - data_sample.generated_product_information.sku
+    
+    #TABLE 2
+    StoreID:
+      - data_sample.generated_inventory_details.storeid
+    StockLevel:
+      - data_sample.generated_inventory_details.stocklevel
+    RestockDate:
+      - data_sample.generated_inventory_details.restockdate
+
+    #TABLE 3
+    TransactionID:
+      - data_sample.generated_sales_data.transactionid
+    Productid:
+      - data_sample.generated_sales_data.productid
+    QuantitySold:
+      - data_sample.generated_sales_data.quantitysold
+    SaleDate:
+      - data_sample.generated_sales_data.saledate
+    TotalSaleAmount:
+      - data_sample.generated_sales_data.totalsaleamount
+    
+
+
+
