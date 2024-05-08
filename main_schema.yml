@@ -24,6 +24,8 @@ schema_template:
         - created_at: datetime
         - updated_at: datetime
 
+        
+
 mapping:
   products:
     id: 
