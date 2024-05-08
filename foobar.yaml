@@ -1,0 +1,16 @@
+A:
+  A1: 1000
+  A2:
+    A2A:
+      A2A1: 100
+      A2A2: 250
+      A2A3: 250
+    A2B:
+      A2B1: 100
+      A2B2: 300
+  A3:
+    A3A:
+      A3A1:
+        A3A1A: 200
+        A3A1B: 100
+        # There could be more values
