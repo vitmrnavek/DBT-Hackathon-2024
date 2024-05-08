@@ -1,258 +1,82 @@
 ### tests: https://hub.getdbt.com/calogica/dbt_expectations/latest/
 
 schema_template:
-  - products:
+  products:
       expected_row_count:
         count: 10000
         tolerance: 0.05
       data_load_type: incremental
       primary_key: id
 
-    # VZOR 
       columns:
-        - id: integer
-          tests: 
+        - name: id
+          tests:
             - unique
             - not_null
             - dbt_expectations.expect_column_values_to_be_in_type_list:
                 column_type_list: [integer, string]
         - name: string
 
-        - price: float
-          tests: 
+        - name: name
+          tests:
           - dbt_expectations.expect_column_values_to_be_in_type_list:
                 column_type_list: [float,decimal]
-        - created_at: datetime
-        - updated_at: datetime
 
-        
-  # TABLE 1. Product Information
-  models:
-    - name: Model 1    
-      columns:  
+        # TABLE 1
         - name: ProductID # Test 1
           tests:
-            - unique
             - not_null
+            - unique
             - dbt_expectations.expect_column_values_to_be_in_type_list:
-              column_type_list: ['String', 'Integer']
-          
+              column_type_list: [string,integer]
+
         - name: ProductName # Test 2
           tests:
             - not_null
             - dbt_expectations.expect_column_values_to_be_in_type_list:
-              column_type_list: ['String']
-          
+              column_type_list: [string]
+
         - name: Category #Test 3
-            tests:
-              - not_null
-              - dbt_expectations.expect_column_values_to_be_in_type_list:
-                column_type_list: ['String']
-          
+          tests:
+            - not_null
+            - dbt_expectations.expect_column_values_to_be_in_type_list:
+              column_type_list: [string]
+
         - name: Price # Test 4
-            tests:
-              - not_null
-              - dbt_expectations.expect_column_values_to_be_in_type_list:
-                column_type_list: ['Decimal']
-          
+          tests:
+            - not_null
+            - dbt_expectations.expect_column_values_to_be_in_type_list:
+              column_type_list: [decimal]
+
         - name: SKU # Test 5
-            tests:
-            - unique
-            - not_null
-            - dbt_expectations.expect_column_values_to_be_in_type_list:
-              column_type_list: ['String']
-
-        - name: Expected Rows #Test 6
-          tests: 
-            - expected_row_count:
-              count: 10000
-              tolerance: 0.05
-        
-        
-      # TABLE 2. Inventory Details
+          tests:
+          - not_null
+          - unique
+          - dbt_expectations.expect_column_values_to_be_in_type_list:
+            column_type_list: [string]
+  inventory:
+      expected_row_count:
+        count: 30000
+        tolerance: 0.05
+      data_load_type: incremental
+      primary_key: id
       columns:
-        - name: StoreID #Test 1
+        - name: TransactionID # Test 1
           tests:
             - unique
             - not_null
             - dbt_expectations.expect_column_values_to_be_in_type_list:
-              column_type_list: ['String', 'Integer']
-      
-        - name: StockLevel #Test 2
-          tests:
-            - not_null
-            - dbt_expectations.expect_column_values_to_be_in_type_list:
-              column_type_list: ['Integer']
-      
-        - name: RestockDate #Test 3
-          tests:
-            - not_null
-            - dbt_expectations.expect_column_values_to_be_in_type_list:
-              column_type_list:  ['Date']  
-    
-        - name: Expected Rows #Test 4
-          tests: 
-            - expected_row_count:
-              count: 30000
-              tolerance: 0.05
-        
-        
-      #Table 3. Sales Data
-      columns:
-        - name: Transactionid # Test 1
-          tests:
-            - unique
-            - not_null
-            - dbt_expectations.expect_column_values_to_be_in_type_list:
-              column_type_list: ['String', 'Integer']
-          
-        - name: ProductID # Test 2
-          tests:
-            - unique
-            - not_null
-            - dbt_expectations.expect_column_values_to_be_in_type_list:
-              column_type_list: ['String', 'Integer']
-      
-        - name: QuantitySold #Test 3
-          tests:
-            - not_null
-            - dbt_expectations.expect_column_values_to_be_in_type_list:
-              column_type_list: ['Integer']
-
-        - name: SaleDate #Test 4
-          tests:
-            - not_null
-            - dbt_expectations.expect_column_values_to_be_in_type_list:
-              column_type_list:  ['Date']  
-
-        - name: TotalSaleAmount # Test 5
-          tests:
-            - not_null
-            - dbt_expectations.expect_column_values_to_be_in_type_list:
-              column_type_list: ['Decimal']
-          
-        - name: Expected Rows #Test 6
-          tests: 
-            - expected_row_count:
-              count: 1000000
-              tolerance: 0.05
-      
-
-      #Table 4. Customer Information
-      columns:
-        - name: CustomerID # Test 1
-          tests:
-            - unique
-            - not_null
-            dbt_expectations.expect_column_values_to_be_in_type_list:
-              column_type_list: ['String', 'Integer']
-      
-        - name: FirstName #Test 2
-          tests:
-            - not_null
-            dbt_expectations.expect_column_values_to_be_in_type_list:
-              column_type_list: ['String']
-
-        - name: LastName # Test 3
-          tests:
-            - not_null
-            dbt_expectations.expect_column_values_to_be_in_type_list:
-              column_type_list: ['String']
-      
-        - name: Email # Test 4
-          tests:
-            - unique
-            - not_null
-            dbt_expectations.expect_column_values_to_be_in_type_list:
-              column_type_list: ['String']
-      
-        - name: LoyaltyPoints # Test 5
-          tests:
-            - not_null
-            dbt_expectations.expect_column_values_to_be_in_type_list:
-              column_type_list: ['Integer']
-        
-        - name: Expected Rows #Test 6
-          tests: 
-            - expected_row_count:
-              count: 2000
-              tolerance: 0.05
-      
-      
-      #Table 5. Promotions and Discounts
-      columns:
-        - name: PromotionID #Test 1
-          tests:
-            - unique
-            - not_null
-            dbt_expectations.expect_column_values_to_be_in_type_list:
-              column_type_list: ['String', 'Integer']
-
-        - name: Description #Test 2
-          tests:
-            - not_null
-            dbt_expectations.expect_column_values_to_be_in_type_list:
-              column_type_list: ['String']
-
-        - name: DiscountType #Test 3
-          tests:
-            - not_null
-            dbt_expectations.expect_column_values_to_be_in_type_list:
-              column_type_list: ['String']
-
-        - name: StartDate #Test 4
-          tests:
-            - not_null
-            - dbt_expectations.expect_column_values_to_be_in_type_list:
-              column_type_list:  ['Date']  
-
-        - name: EndDate #Test 5
-          tests:
-            - not_null
-            - dbt_expectations.expect_column_values_to_be_in_type_list:
-              column_type_list:  ['Date'] 
-         
-         - name: Expected Rows #Test 6
-          tests: 
-            - expected_row_count:
-              count: 2000
-              tolerance: 0.05
-
+                column_type_list: [integer, string]
+        - store_id: integer
+        - stock_level: integer
+        - restock_date: datetime
+        - created_at: datetime
+        - updated_at: datetime
 
 mapping:
   products:
-    #TABLE 1
-    ProductID:
-      - data_sample.generated_product_information.productid
-    ProductName:
-      - data_sample.generated_product_information.productname
-    category:
-      - data_sample.generated_product_information.category
-    price: 
-      - data_sample.generated_product_information.price
-    SKU:
-      - data_sample.generated_product_information.sku
-    
-    #TABLE 2
-    StoreID:
-      - data_sample.generated_inventory_details.storeid
-    StockLevel:
-      - data_sample.generated_inventory_details.stocklevel
-    RestockDate:
-      - data_sample.generated_inventory_details.restockdate
-
-    #TABLE 3
-    TransactionID:
-      - data_sample.generated_sales_data.transactionid
-    Productid:
-      - data_sample.generated_sales_data.productid
-    QuantitySold:
-      - data_sample.generated_sales_data.quantitysold
-    SaleDate:
-      - data_sample.generated_sales_data.saledate
-    TotalSaleAmount:
-      - data_sample.generated_sales_data.totalsaleamount
-    
-
-
-
+    id: 
+    - data_sample.generated_product_information.productid
+    - data_sample.generated_sales_data.productid
+    name: 
+    - data_sample.generated_product_information.productname

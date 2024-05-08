@@ -2,3 +2,4 @@ dbt-core
 dbt-snowflake
 shandy-sqlfmt[jinjafmt]
 dbt-bigquery
+pyyaml
