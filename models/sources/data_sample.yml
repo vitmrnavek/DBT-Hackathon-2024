@@ -14,6 +14,9 @@ sources:
         columns:
           - name: productid
             data_type: number
+            tests: 
+              - unique
+              - not_null
           - name: productname
             data_type: varchar
           - name: category

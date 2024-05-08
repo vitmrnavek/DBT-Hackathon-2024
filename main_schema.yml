@@ -1,26 +1,33 @@
-tables:
+### tests: https://hub.getdbt.com/calogica/dbt_expectations/latest/
+
+schema_template:
   - products:
+      expected_row_count:
+        count: 10000
+        tolerance: 0.05
+      data_load_type: incremental
+      primary_key: id
+        
       columns:
         - id: integer
           tests: 
             - unique
             - not_null
-            - 
+            - dbt_expectations.expect_column_values_to_be_in_type_list:
+                column_type_list: [integer, string]
         - name: string
 
         - price: float
+          tests: 
+          - dbt_expectations.expect_column_values_to_be_in_type_list:
+                column_type_list: [float,decimal]
         - created_at: datetime
         - updated_at: datetime
 
 mapping:
-  sources:
-    business_czechia:
-      - products: 
-          table_name: products_cz
-          columns: 
-            id: product_id
-    business_india:
-      - products: 
-          table_name: products_in
-          columns: 
-            id: product_key
+  products:
+    id: 
+    - data_sample.generated_product_information.productid
+    - data_sample.generated_sales_data.productid
+    name: 
+    - data_sample.generated_product_information.productname
