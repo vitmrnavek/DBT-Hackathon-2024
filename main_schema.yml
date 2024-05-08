@@ -23,8 +23,40 @@ schema_template:
                 column_type_list: [float,decimal]
         - created_at: datetime
         - updated_at: datetime
-
         
+        # TABLE 1
+        - name: ProductID # Test 1
+          tests:
+            - not_null
+            - unique
+            - dbt_expectations.expect_column_values_to_be_in_type_list:
+              column_type_list: ['String', 'Integer']
+          
+        - name: ProductName # Test 2
+          tests:
+            - not_null
+            - dbt_expectations.expect_column_values_to_be_in_type_list:
+              column_type_list: ['String']
+          
+          - name: Category #Test 3
+            tests:
+              - not_null
+              - dbt_expectations.expect_column_values_to_be_in_type_list:
+                column_type_list: ['String']
+          
+          - name: Price # Test 4
+            tests:
+              - not_null
+              - dbt_expectations.expect_column_values_to_be_in_type_list:
+                column_type_list: ['Decimal']
+          
+          - name: SKU # Test 5
+            tests:
+            - not_null
+            - unique
+            - dbt_expectations.expect_column_values_to_be_in_type_list:
+              column_type_list: ['String']
+
 
 mapping:
   products:
