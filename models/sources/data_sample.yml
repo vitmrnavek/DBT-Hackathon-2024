@@ -1,0 +1,208 @@
+sources:
+  - name: data_sample
+    tables:
+      - name: generated_inventory_details
+        columns:
+          - name: storeid
+            data_type: number
+          - name: stocklevel
+            data_type: number
+          - name: restockdate
+            data_type: date
+
+      - name: generated_product_information
+        columns:
+          - name: productid
+            data_type: number
+          - name: productname
+            data_type: varchar
+          - name: category
+            data_type: varchar
+          - name: price
+            data_type: number
+          - name: sku
+            data_type: varchar
+
+      - name: generated_sales_data
+        columns:
+          - name: transactionid
+            data_type: number
+          - name: productid
+            data_type: varchar
+          - name: quantitysold
+            data_type: number
+          - name: saledate
+            data_type: date
+          - name: totalsaleamount
+            data_type: number
+
+      - name: pizza_customers
+        columns:
+          - name: id
+            data_type: number
+          - name: customer_status
+            data_type: varchar
+          - name: customer_type
+            data_type: varchar
+          - name: customer_created
+            data_type: timestamp_ntz
+          - name: first_name_hash
+            data_type: float
+          - name: sex
+            data_type: varchar
+          - name: customer_email_hash
+            data_type: float
+          - name: customer_phone_hash
+            data_type: float
+          - name: last_order_date
+            data_type: date
+          - name: recency_days
+            data_type: number
+          - name: transaction_count
+            data_type: number
+          - name: total_ordered_amount
+            data_type: number
+          - name: recency_score
+            data_type: number
+          - name: frequency_score
+            data_type: number
+          - name: monetary_score
+            data_type: number
+          - name: rfm_score
+            data_type: number
+
+      - name: pizza_marketing_expenditures
+        columns:
+          - name: expenditure_date
+            data_type: date
+          - name: expenditures_sum
+            data_type: number
+
+      - name: pizza_order_item_toppings
+        columns:
+          - name: id
+            data_type: number
+          - name: order_item_id
+            data_type: number
+          - name: topping_price_czk_without_vat
+            data_type: number
+          - name: is_active
+            data_type: number
+          - name: topping_id
+            data_type: number
+          - name: topping_category
+            data_type: varchar
+          - name: topping_name
+            data_type: varchar
+
+      - name: pizza_order_items
+        columns:
+          - name: id
+            data_type: number
+          - name: order_id
+            data_type: number
+          - name: product_id
+            data_type: number
+          - name: product_name
+            data_type: varchar
+          - name: product_category_id
+            data_type: number
+          - name: category_name
+            data_type: varchar
+          - name: item_type
+            data_type: varchar
+          - name: quantity
+            data_type: number
+          - name: order_item_toppings_total_price_czk_without_vat
+            data_type: number
+          - name: order_item_total_price_czk_without_vat
+            data_type: number
+          - name: product_image
+            data_type: varchar
+          - name: product_description
+            data_type: varchar
+
+      - name: pizza_orders
+        columns:
+          - name: id
+            data_type: number
+          - name: customer_id
+            data_type: number
+          - name: order_created
+            data_type: date
+          - name: order_delivered
+            data_type: date
+          - name: customer_order_number
+            data_type: number
+          - name: order_status
+            data_type: varchar
+          - name: is_canceled
+            data_type: number
+          - name: delivery_type
+            data_type: varchar
+          - name: order_source
+            data_type: varchar
+          - name: final_order_price_after_discount_czk_without_vat
+            data_type: number
+          - name: order_total_price_before_discount_czk_without_vat
+            data_type: number
+          - name: order_items_total_czk_without_vat
+            data_type: number
+          - name: order_toppings_total_czk_without_vat
+            data_type: number
+          - name: delivery_charge_czk
+            data_type: number
+          - name: discount_sum_czk
+            data_type: number
+          - name: number_of_items
+            data_type: number
+          - name: avg_item_total
+            data_type: number
+
+      - name: saas_marketing_expenditures
+        columns:
+          - name: expenditure_date
+            data_type: date
+          - name: expenditures_sum
+            data_type: number
+
+      - name: saas_sales
+        columns:
+          - name: row_id
+            data_type: number
+          - name: order_id
+            data_type: varchar
+          - name: order_date
+            data_type: date
+          - name: date_key
+            data_type: number
+          - name: contact_name
+            data_type: varchar
+          - name: country
+            data_type: varchar
+          - name: city
+            data_type: varchar
+          - name: region
+            data_type: varchar
+          - name: subregion
+            data_type: varchar
+          - name: customer
+            data_type: varchar
+          - name: customer_id
+            data_type: number
+          - name: industry
+            data_type: varchar
+          - name: segment
+            data_type: varchar
+          - name: product
+            data_type: varchar
+          - name: license
+            data_type: varchar
+          - name: sales
+            data_type: number
+          - name: quantity
+            data_type: number
+          - name: discount
+            data_type: number
+          - name: profit
+            data_type: number
