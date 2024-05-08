@@ -4,9 +4,17 @@ Hackathon:
     outputs:
         Snowflake_DB:
             type: snowflake
-            account: [account id]
-            user: [username]
-            password: [password]
-            database: [database name]
-            warehouse: [warehouse name]
-            schema: [dbt schema]
+            account: JXGPFAR-REVOLT_PARTNER
+            user: USER_07
+            password: KMX1wmz-eyv6qwa3zge
+            database: HACKATHON
+            warehouse: HACKATHON_WH
+            schema: TEAM_07
+            
+        Bigguery_db:
+            type: bigquery
+            method: oauth
+            project: GCP_PROJECT_ID
+            dataset: DBT_DATASET_NAME # You can also use "schema" here
+            threads: 4 # Must be a value of 1 or greater 
+            OPTIONAL_CONFIG: VALUE

@@ -1,0 +1,26 @@
+tables:
+  - products:
+      columns:
+        - id: integer
+          tests: 
+            - unique
+            - not_null
+            - 
+        - name: string
+
+        - price: float
+        - created_at: datetime
+        - updated_at: datetime
+
+mapping:
+  sources:
+    business_czechia:
+      - products: 
+          table_name: products_cz
+          columns: 
+            id: product_id
+    business_india:
+      - products: 
+          table_name: products_in
+          columns: 
+            id: product_key
