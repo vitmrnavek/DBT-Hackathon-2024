@@ -8,7 +8,7 @@ schema_template:
       data_load_type: incremental
       primary_key: id
 
-        # VZOR 
+    # VZOR 
       columns:
         - id: integer
           tests: 
@@ -43,24 +43,30 @@ schema_template:
             - dbt_expectations.expect_column_values_to_be_in_type_list:
               column_type_list: ['String']
           
-          - name: Category #Test 3
+        - name: Category #Test 3
             tests:
               - not_null
               - dbt_expectations.expect_column_values_to_be_in_type_list:
                 column_type_list: ['String']
           
-          - name: Price # Test 4
+        - name: Price # Test 4
             tests:
               - not_null
               - dbt_expectations.expect_column_values_to_be_in_type_list:
                 column_type_list: ['Decimal']
           
-          - name: SKU # Test 5
+        - name: SKU # Test 5
             tests:
             - unique
             - not_null
             - dbt_expectations.expect_column_values_to_be_in_type_list:
               column_type_list: ['String']
+
+        - name: Expected Rows #Test 6
+          tests: 
+            - expected_row_count:
+              count: 10000
+              tolerance: 0.05
         
         
       # TABLE 2. Inventory Details
