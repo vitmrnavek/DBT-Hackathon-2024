@@ -2,7 +2,7 @@ import sys
 import ruamel.yaml
 
 yaml = ruamel.yaml.YAML(typ='safe')
-with open('foobar.yaml') as fp:
+with open('data.yaml') as fp:
   data = yaml.load(fp)
 
 end_value = 0
